@@ -10,7 +10,8 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="myfirstprojectFlow" doc:id="6d61b62c-01ba-485d-9998-d1aa17ec8b53" >
 		<http:listener doc:name="Listener" doc:id="afa7ce30-9c97-417b-a506-556ab95a6a23" config-ref="HTTP_Listener_config" path="/"/>
-		<logger level="INFO" doc:name="Logger" doc:id="ebe60231-b2ef-4ad7-84e8-8e2191cb6e4b" />
+		<logger level="INFO" doc:name="Logger" doc:id="ebe60231-b2ef-4ad7-84e8-8e2191cb6e4b" message="#[payload]"/>
+		<set-payload value='#["Usha"]' doc:name="Set Payload" doc:id="b90a0ca3-45f0-4ce1-9f38-5efeb0bb70a3" />
 		<ee:transform doc:name="Transform Message" doc:id="be353702-9ef0-47d6-af70-ab51309c6fe0" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -19,5 +20,6 @@ output application/json
 payload]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="e36587e8-d51f-41df-bdc4-943b9386debf" message="#[payload]"/>
 	</flow>
 </mule>
